@@ -151,12 +151,25 @@ CREATE TABLE villages
     name        VARCHAR(255) NOT NULL
 );
 
+DROP TABLE IF EXISTS withdraw_points;
+CREATE TABLE withdraw_points
+(
+    withdraw_point_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id           INT            NOT NULL,
+    point             DECIMAL(10, 1) NOT NULL DEFAULT 0,
+    status            ENUM ('pending', 'success', 'failed', 'cancel'),
+    approval_by       INT,
+    created_at        DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at        DATETIME
+);
+
 ALTER TABLE verifications ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE user_details ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE category_trash ADD FOREIGN KEY (trash_id) REFERENCES trashes (trash_id);
 ALTER TABLE category_trash ADD FOREIGN KEY (category_id) REFERENCES categories (category_id);
 ALTER TABLE carts ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE carts ADD FOREIGN KEY (garbage_bank_id) REFERENCES garbage_banks (garbage_bank_id);
+ALTER TABLE carts ADD FOREIGN KEY (approval_by) REFERENCES users (user_id);
 ALTER TABLE cart_trash ADD FOREIGN KEY (cart_id) REFERENCES carts (cart_id);
 ALTER TABLE cart_trash ADD FOREIGN KEY (trash_id) REFERENCES trashes (trash_id);
 ALTER TABLE operation_hours ADD FOREIGN KEY (garbage_bank_id) REFERENCES garbage_banks (garbage_bank_id);
@@ -171,3 +184,5 @@ ALTER TABLE garbage_banks ADD FOREIGN KEY (province_id) REFERENCES provinces (pr
 ALTER TABLE garbage_banks ADD FOREIGN KEY (regency_id) REFERENCES regencies (regency_id);
 ALTER TABLE garbage_banks ADD FOREIGN KEY (district_id) REFERENCES districts (district_id);
 ALTER TABLE garbage_banks ADD FOREIGN KEY (village_id) REFERENCES villages (village_id);
+ALTER TABLE withdraw_points ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+ALTER TABLE withdraw_points ADD FOREIGN KEY (approval_by) REFERENCES users (user_id);
