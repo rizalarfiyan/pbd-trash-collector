@@ -170,7 +170,6 @@ ALTER TABLE verifications ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE user_details ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE category_trash ADD FOREIGN KEY (trash_id) REFERENCES trashes (trash_id);
 ALTER TABLE category_trash ADD FOREIGN KEY (category_id) REFERENCES categories (category_id);
-ALTER TABLE trashes ADD COLUMN point_per_weight DECIMAL(10, 1) NOT NULL DEFAULT 0 AFTER name;
 ALTER TABLE carts ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE carts ADD FOREIGN KEY (garbage_bank_id) REFERENCES garbage_banks (garbage_bank_id);
 ALTER TABLE carts ADD FOREIGN KEY (approval_by) REFERENCES users (user_id);

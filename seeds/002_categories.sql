@@ -23,7 +23,7 @@ VALUES (1, 'Botol Plastik'),
        (13, 'Televisi Rusak'),
        (14, 'Handphone Bekas');
 
-INSERT INTO category_trash (category_id, trash_id, category_id)
+INSERT INTO category_trash (category_id, trash_id)
 VALUES (1, 1),
        (1, 2),
        (2, 3),
