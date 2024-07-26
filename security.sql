@@ -14,12 +14,12 @@ GRANT ALL PRIVILEGES ON trash_collector.* TO 'admin' WITH GRANT OPTION;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON trash_collector.* TO 'staff';
 
-grant select on trash_collector.carts to 'user';
-grant select on trash_collector.withdraw_points to 'user';
-grant select on trash_collector.garbage_banks to 'user';
-grant select on trash_collector.operation_hours to 'user';
-grant select on trash_collector.categories to 'user';
-grant select on trash_collector.trashes to 'user';
+GRANT SELECT ON trash_collector.carts TO 'user';
+GRANT SELECT ON trash_collector.withdraw_points TO 'user';
+GRANT SELECT ON trash_collector.garbage_banks TO 'user';
+GRANT SELECT ON trash_collector.operation_hours TO 'user';
+GRANT SELECT ON trash_collector.categories TO 'user';
+GRANT SELECT ON trash_collector.trashes TO 'user';
 
 SHOW GRANTS FOR 'admin'@'localhost';
 SHOW GRANTS FOR 'staff'@'localhost';
