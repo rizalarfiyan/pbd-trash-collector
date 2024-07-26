@@ -7,21 +7,21 @@ VALUES (1, 'Plastik'),
        (6, 'Organik'),
        (7, 'Elektronik');
 
-INSERT INTO trashes (trash_id, name)
-VALUES (1, 'Botol Plastik'),
-       (2, 'Tas Plastik'),
-       (3, 'Kaleng Soda'),
-       (4, 'Kaleng Makanan'),
-       (5, 'Koran Bekas'),
-       (6, 'Karton'),
-       (7, 'Botol Kaca'),
-       (8, 'Gelas Pecah'),
-       (9, 'Paku'),
-       (10, 'Kawat'),
-       (11, 'Sisa Makanan'),
-       (12, 'Daun Kering'),
-       (13, 'Televisi Rusak'),
-       (14, 'Handphone Bekas');
+INSERT INTO trashes (trash_id, name, point_per_weight)
+VALUES (1, 'Botol Plastik', 5),
+       (2, 'Tas Plastik', 3),
+       (3, 'Kaleng Soda', 10),
+       (4, 'Kaleng Makanan', 25),
+       (5, 'Koran Bekas', 10),
+       (6, 'Karton', 10),
+       (7, 'Botol Kaca', 10),
+       (8, 'Gelas Pecah', 7),
+       (9, 'Paku', 60),
+       (10, 'Kawat', 40),
+       (11, 'Sisa Makanan', 2),
+       (12, 'Daun Kering', 2),
+       (13, 'Televisi Rusak', 200),
+       (14, 'Handphone Bekas', 50);
 
 INSERT INTO category_trash (category_id, trash_id)
 VALUES (1, 1),

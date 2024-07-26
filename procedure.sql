@@ -1,8 +1,3 @@
-# TODO: update procedure
-#   - 0 parameter
-#   - 2 parameter
-#   - with flow control
-
 DELIMITER $$;
 DROP PROCEDURE IF EXISTS insert_carts;
 CREATE PROCEDURE insert_carts(IN pUserId INT, IN pGarbageBankId INT, OUT pCartId INT)
@@ -22,3 +17,26 @@ BEGIN
 END $$;
 DELIMITER ;
 
+DELIMITER $$;
+DROP PROCEDURE IF EXISTS insert_verification_forgot_password;
+CREATE PROCEDURE insert_verification_forgot_password(IN pUserId  INT, IN pCode VARCHAR(50))
+BEGIN
+    INSERT INTO verifications (user_id, code, type) VALUES (pUserId, pCode, 'forgot_password');
+END $$;
+DELIMITER ;
+
+DELIMITER $$;
+DROP PROCEDURE IF EXISTS insert_verification_activation;
+CREATE PROCEDURE insert_verification_activation(IN pUserId  INT, IN pCode VARCHAR(50))
+BEGIN
+    INSERT INTO verifications (user_id, code, type) VALUES (pUserId, pCode, 'activation');
+END $$;
+DELIMITER ;
+
+DELIMITER $$;
+DROP PROCEDURE IF EXISTS user_banned;
+CREATE PROCEDURE user_banned()
+BEGIN
+    SELECT * FROM users WHERE status = 'banned';
+END $$;
+DELIMITER ;

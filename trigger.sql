@@ -9,6 +9,7 @@ BEGIN
 END $$;
 DELIMITER ;
 
+DELIMITER $$;
 DROP TRIGGER IF EXISTS bi_verifications;
 CREATE TRIGGER bi_verifications
     BEFORE INSERT
@@ -29,7 +30,8 @@ BEGIN
     IF NEW.type = 'forgot_password' AND userStatus = 'inactive' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Your account is inactive!';
     END IF;
-END;
+END $$;
+DELIMITER ;
 
 DELIMITER $$;
 DROP TRIGGER IF EXISTS bu_carts;
