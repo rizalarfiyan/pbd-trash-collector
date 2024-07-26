@@ -69,13 +69,13 @@ VALUES (1, '34', '3404', '340410', '3404102001', 'Jl. Kelinci No. 19', '3401', '
        (33, '32', '3201', '320112', '3201121001', 'Jl. Jendral Sudirman No. 33', '3201', '2026-08-25', 'male');
 
 INSERT INTO verifications (verification_id, user_id, code, type)
-VALUES (1, 2, 'SJGE23', 'activation'),
-       (2, 4, 'DQ12KT', 'activation'),
-       (3, 13, '1KH3HB', 'activation'),
-       (4, 11, 'TY2J7P', 'forgot_password'),
-       (5, 15, 'KL1NM2', 'activation'),
-       (6, 16, '22JJWK', 'activation'),
-       (7, 17, '0LK8JT', 'activation'),
-       (8, 8, 'QW8U2H', 'forgot_password'),
-       (9, 14, 'HBY3K2', 'activation'),
-       (10, 18, 'K3HY9T', 'activation');
+VALUES (1, 2, 'gjB45f1xmjWVa4uZpTk3kjNYBiRghHYk8eBqijwCG9v1UQfDeA', 'activation'),
+       (2, 4, 'xwBE8jTW5Ny1YZmF2aEXRgn98u822WaWXeNeYMnYdMiScV7kHr', 'activation'),
+       (3, 13, 'ZM7eN3EyFS3XRCJSb67GdR3gFaTR8tjU2C9yej7xdgw304EDFX', 'activation'),
+       (4, 11, 'bPCtqptwGPHx0SHf5w0KinSumfh9JvSwxAKykfwqA0v4v1ctVH', 'forgot_password'),
+       (5, 15, 'TeUd8FN7PMVUDYX11ppuifWrK84f35iMGE3PKaYeW06yH04AwN', 'activation'),
+       (6, 16, 'cAwnNmpyrBXA7qKQHtpxjbUbZCaLZZPcUY3efiD0YWSVen85f0', 'activation'),
+       (7, 17, 'zHT4i12x0T8X9WpuQk77KFAWh74NtuwFDXeCR3NwYmbP2UJ16v', 'activation'),
+       (8, 8, 'P4z3vMHtDyam4Rr1TejSpcb1fZvR21BuZ2NG81qmmm8Tr46jXY', 'forgot_password'),
+       (9, 14, '3twjEqMVU5LSbGYmhAbTWmXcaNnMaAPfcXyr3jTKkYQkN9cVkA', 'activation'),
+       (10, 18, 'rZApT0VGV2ceKdJSjd9ZM2c5CwZxDhUcr9GWqLHyMuPjJS33Lp', 'activation');
