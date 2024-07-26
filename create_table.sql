@@ -190,3 +190,5 @@ ALTER TABLE garbage_banks ADD FOREIGN KEY (district_id) REFERENCES districts (di
 ALTER TABLE garbage_banks ADD FOREIGN KEY (village_id) REFERENCES villages (village_id);
 ALTER TABLE withdraw_points ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE withdraw_points ADD FOREIGN KEY (approval_by) REFERENCES users (user_id);
+
+select * from provinces;
