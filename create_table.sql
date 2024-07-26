@@ -7,13 +7,14 @@ CREATE TABLE users
 (
     user_id    INT PRIMARY KEY AUTO_INCREMENT,
     email      VARCHAR(100) UNIQUE,
-    name       VARCHAR(50) NOT NULL,
+    name       VARCHAR(50)    NOT NULL,
     password   VARCHAR(100),
     status     ENUM ('active', 'inactive', 'banned'),
     role       ENUM ('admin', 'staff', 'user'),
-    points     INT         NOT NULL DEFAULT 0,
-    created_at DATETIME,
-    updated_at DATETIME
+    points     DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    cart_count INT            NOT NULL DEFAULT 0,
+    created_at DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME       NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS verifications;
@@ -23,8 +24,8 @@ CREATE TABLE verifications
     user_id         INT                                    NOT NULL,
     code            VARCHAR(50) UNIQUE                     NOT NULL,
     type            ENUM ('activation', 'forgot_password') NOT NULL,
-    created_at      DATETIME,
-    expired_at      DATETIME
+    created_at      DATETIME                               NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    expired_at      DATETIME                               NOT NULL DEFAULT (CURRENT_TIMESTAMP + INTERVAL 1 HOUR)
 );
 
 DROP TABLE IF EXISTS user_details;
@@ -44,11 +45,11 @@ CREATE TABLE user_details
 DROP TABLE IF EXISTS trashes;
 CREATE TABLE trashes
 (
-    trash_id   INT PRIMARY KEY AUTO_INCREMENT,
-    name       VARCHAR(100) NOT NULL,
+    trash_id         INT PRIMARY KEY AUTO_INCREMENT,
+    name             VARCHAR(100)   NOT NULL,
     point_per_weight DECIMAL(10, 1) NOT NULL DEFAULT 0,
-    created_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME
+    created_at       DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       DATETIME       NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS categories;
@@ -77,13 +78,13 @@ DROP TABLE IF EXISTS carts;
 CREATE TABLE carts
 (
     cart_id         INT PRIMARY KEY AUTO_INCREMENT,
-    user_id         INT            NOT NULL,
-    garbage_bank_id INT            NOT NULL,
-    total_weight    DECIMAL(10, 1) NOT NULL DEFAULT 0 COMMENT 'in kg',
-    total_point     DECIMAL(10, 1) NOT NULL DEFAULT 0,
-    created_at      DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at      DATETIME,
-    status          ENUM ('pending', 'success', 'failed'),
+    user_id         INT                                   NOT NULL,
+    garbage_bank_id INT                                   NOT NULL,
+    total_weight    DECIMAL(10, 1)                        NOT NULL DEFAULT 0 COMMENT 'in kg',
+    total_point     DECIMAL(10, 1)                        NOT NULL DEFAULT 0,
+    created_at      DATETIME                              NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at      DATETIME                              NULL ON UPDATE CURRENT_TIMESTAMP,
+    status          ENUM ('pending', 'success', 'failed') NOT NULL DEFAULT 'pending',
     approval_by     INT
 );
 
@@ -105,8 +106,9 @@ CREATE TABLE garbage_banks
     district_id     CHAR(6)      NOT NULL,
     village_id      CHAR(10)     NOT NULL,
     address         VARCHAR(255) NOT NULL DEFAULT '',
+    is_active       BOOLEAN      NOT NULL DEFAULT TRUE,
     created_at      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at      DATETIME
+    updated_at      DATETIME     NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS operation_hours;
@@ -118,7 +120,7 @@ CREATE TABLE operation_hours
     open              TIME,
     close             TIME,
     created_at        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at        DATETIME
+    updated_at        DATETIME NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS provinces;
@@ -156,12 +158,12 @@ DROP TABLE IF EXISTS withdraw_points;
 CREATE TABLE withdraw_points
 (
     withdraw_point_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id           INT            NOT NULL,
-    point             DECIMAL(10, 1) NOT NULL DEFAULT 0,
-    status            ENUM ('pending', 'success', 'failed', 'cancel'),
+    user_id           INT                                             NOT NULL,
+    point             DECIMAL(10, 1)                                  NOT NULL DEFAULT 0,
+    status            ENUM ('pending', 'success', 'failed', 'cancel') NOT NULL DEFAULT 'pending',
     approval_by       INT,
-    created_at        DATETIME       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at        DATETIME
+    created_at        DATETIME                                        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at        DATETIME                                        NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 ALTER TABLE verifications ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
